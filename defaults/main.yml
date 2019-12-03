@@ -1,0 +1,8 @@
+---
+new_keys:
+  - priv: "{{lookup('file', 'resources/users/example_user_ssh.pem')}}"
+    pub: "{{lookup('file', 'resources/users/example_user_ssh.pub')}}"
+    comment: example_user
+    size: 2049
+  
+  - priv: "{{lookup('file', 'resources/users/just_priv_key.pub')}}"

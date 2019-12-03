@@ -1,0 +1,8 @@
+---
+- name: Inlcude tasks
+  include_tasks: create_user_ssh_keys.yaml
+  vars: 
+    key: "{{ key_params }}"
+  loop: "{{ new_keys }}"
+  loop_control:
+    loop_var: key_params

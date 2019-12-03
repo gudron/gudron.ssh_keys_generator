@@ -1,0 +1,16 @@
+---
+- name:  Create ssh keys dir
+  local_action:
+    module: file
+    path: "{{ key.priv | dirname }}"
+    state: directory
+    recurse: yes
+  become: false
+
+- name: Create ssh keys
+  shell: "ssh-keygen -t rsa -b {{ key.size | default(default_key_size) }} -C {{ key.comment | default('') }} -f {{ key.priv }} -q -N ''"
+  args: 
+    creates: "{{ key.priv }}"
+  delegate_to: localhost
+  run_once: yes
+  become: false
